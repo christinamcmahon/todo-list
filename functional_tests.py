@@ -1,33 +1,42 @@
 from selenium import webdriver
+import unittest
 
-browser = webdriver.Firefox()
+class NewVisitorTest(unittest.TestCase):
 
-# Sean has heard about a cool new online to-do list app.
-# He goes to check out its homepage
-browser.get('http://localhost:8000')
+    def setUp(self):
+        self.browser = webdriver.Firefox()
 
-# He notices the page title and header mention to-do lists
-assert 'To-Do' in browser.title
+    def tearDown(self):
+        self.browser.quit()
 
-# He is invited to enter a to-do list straight away
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        # Sean has heard about a cool new online to-do list app.
+        # He goes to check out its homepage
+        self.browser.get('http://localhost:8000')
 
-# He types "Get a haircut" into a text box
+        # He notices the page title and header mention to-do lists
+        self.assertIn('To-Do', self.browser.title)
+        self.fail('Finish the test!')
 
-# When he hits enter, the page updates, and now the page lists
-# "1: Get a haircut" as an item in a to-do list
+        # He is invited to enter a to-do list straight away
+        
+        # He types "Get a haircut" into a text box
 
-# There is still a text box inviting him to add another item. 
-# He enters "Do 100 pushups"
+        # When he hits enter, the page updates, and now the page lists
+        # "1: Get a haircut" as an item in a to-do list
 
-# The page updates again, and shows both items on her list
+        # There is still a text box inviting him to add another item. 
+        # He enters "Do 100 pushups"
 
-# Sean wonders whether the site will remember her list. Then he sees
-# that the site has generated a unique URL for him -- there is some 
-# explanatory text to that effect. 
+        # The page updates again, and shows both items on her list
 
-# He visits the URL - his to-do list is still there. 
+        # Sean wonders whether the site will remember her list. Then he sees
+        # that the site has generated a unique URL for him -- there is some 
+        # explanatory text to that effect. 
 
-# Satisfied, he gets back to work
+        # He visits the URL - his to-do list is still there. 
 
-browser.quit()
+        # Satisfied, he gets back to work
 
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
