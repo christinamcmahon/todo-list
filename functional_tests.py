@@ -34,15 +34,12 @@ class NewVisitorTest(unittest.TestCase):
         )
         
         # He types "Get a haircut" into a text box
-        inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
-
-        table = self.browser.find_element_by_id('id_list_table')
-        rows = table.find_elements_by_tag_name('tr')
-        self.assertIn('1: Get a haircut', [row.text for row in rows])
 
         # When he hits enter, the page updates, and now the page lists
         # "1: Get a haircut" as an item in a to-do list
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
+        self.check_for_row_in_list_table('1: Get a haircut')
 
         # There is still a text box inviting him to add another item. 
         # He enters "Do 100 pushups"
