@@ -34,6 +34,7 @@ class NewVisitorTest(unittest.TestCase):
         )
         
         # He types "Get a haircut" into a text box
+        inputbox.send_keys('Get a haircut')
 
         # When he hits enter, the page updates, and now the page lists
         # "1: Get a haircut" as an item in a to-do list
